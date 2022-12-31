@@ -1,0 +1,187 @@
+<div class="wrapper d-flex">
+    <nav id="idbarralateral">
+        <div class="custom-menu">
+            <button type="button" id="btbarralateral" class="btn btn-primary rbarralateral">
+                <i class="fa fa-search" style="font-size: 20px;"></i>
+            </button>
+        </div>
+        <div class="p-4">
+            <h1><a class="logo">Consulta Facial</a></h1>
+            <ul class="components mb-5">
+                <div id="valorespesquisa">
+                    <fieldset class="scheduler-border-nav"
+                        style="height:auto !important; margin-right:auto !important; margin-left:auto !important; color:black">
+                        <legend class="scheduler-border-nav">Fotos da Pesquisa</legend>
+
+                        <div class="form-row">
+                            <div class="col mx-auto text-center">
+                                <div id="divlegfotopesquisa">
+                                    <span id="legendafotos"></span>
+                                </div>
+                                <img id="imgupada" width="146px" height="175px" ftatual="0" src="{% if totalfotos > 0 %}/private-media/{%if formsetfotos.0 %}{{formsetfotos.0}}{%endif%}
+                                {% else %}{% static 'Imagens/semfoto.jpg' %}{% endif %}"
+                                    style="border-radius: 15px;border-width: 1.5px;border-style: solid; border-color: black; cursor: pointer; margin-bottom: 2px;">
+                            </div>
+                        </div>
+
+                        <div class="form-row" id="navfoto" style="display: none;">
+                            <div style="margin-right: -11px;" class="input-group-btn col mx-auto text-center">
+
+                                <input
+                                    style="width: 30px !important; height: 30px !important;vertical-align: middle !important;padding: 0px 0px !important;"
+                                    disabled class="btn btn-primary" type="button" id="leftallpp" value="&laquo;"
+                                    title="Primeira Foto!!!">
+                                <input
+                                    style="width: 30px !important; height: 30px !important;vertical-align: middle !important;padding: 0px 0px !important;"
+                                    disabled class="btn btn-primary" type="button" id="leftp" value="&lsaquo;"
+                                    title="Foto Aterior!!!">
+                                <input
+                                    style="width: 30px !important; height: 30px !important;vertical-align: middle !important;padding: 0px 0px !important;"
+                                    class="btn btn-primary" type="button" id="rightp" value="&rsaquo;"
+                                    title="Póxima Foto!!!">
+                                <input
+                                    style="width: 30px !important; height: 30px !important;vertical-align: middle !important;padding: 0px 0px !important;"
+                                    class="btn btn-primary" type="button" id="rightallp" value="»"
+                                    title="Ultima Foto!!!">
+                            </div>
+                        </div>
+
+                        <form id="form-fotos" action="/facial/consulta/" method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+
+                            <div class="form-row">
+
+                                <label class="input-group-btn col mx-auto text-center">
+                                    <span class="btn btn-primary"
+                                        title="Clique e Carregue uma ou Até 5 Fotos com Vários Rostos cada!"
+                                        style="height: 30px !important; width: 50px; margin-top: 2.5px; text-align: center;"
+                                        id="btfotos">
+                                        <i class="fas fa-images" style="position: absolute; margin-left: -9px;"
+                                            title="Clique e Carregue uma ou Até 5 Fotos com Vários Rostos cada!"></i>
+
+                                        <input id="id_fotos_carregada" name="upload_image" type="file"
+                                            style="display: none;" accept=".jpg,.png,.gif,.jpeg,.tiff,.bmp,.svg,.raw"
+                                            multiple>
+
+                                    </span>
+                                </label>
+
+                            </div>
+                        </form>
+
+                    </fieldset>
+                    <br>
+
+                    <br>
+                    <fieldset class="scheduler-border-nav"
+                        style="height:auto !important; margin-right:auto !important; margin-left:auto !important; color:black">
+                        <legend class="scheduler-border-nav">Configurações</legend>
+
+                        <div class="form-row div-pesquisa">
+                            <div class="form-group col-md-12">
+                                <label class="label-pesquisa" for="tipobusca">Tipo de Busca</label>
+                                <select style="width: 100%;" class="form-control" id="tipobusca"
+                                    title="Método de Detecção de Rostos. Utilize o Avançado para Fotos Com qualidade RUIM!!!">
+                                    <option value="S" selected="">Simples</option>
+                                    <option value="A">Avançada</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row div-pesquisa" id="div-numpassagens" style="display: none;">
+                            <div class="form-group col-md-12">
+                                <label class="label-pesquisa" for="numpassagens">Número de Tentativas</label>
+                                <select style="width: 100%;" class="form-control" id="numpassagens"
+                                    title="Será Realizado Várias Tentativas de Localização de Rostos na Imagem, Utilizado Geralmente em imagens Ruins!!!">
+                                    <option value="1" selected="">1x</option>
+                                    <option value="2">2x</option>
+                                    <option value="3">3x</option>
+                                    <option value="4">4x</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row div-pesquisa">
+                            <div class="form-group col-md-12">
+                                <label class="label-pesquisa" for="totalfotos">Total de Itens</label>
+                                <select style="width: 100%;" class="form-control" id="totalfotos"
+                                    title="Número Máximo de Fotos a ser Exibido!!!">
+                                    <option value="5">5 Itens</option>
+                                    <option value="10">10 Itens</option>
+                                    <option value="15" selected="">15 Itens</option>
+                                    <option value="20">20 Itens</option>
+                                    <option value="25">25 Itens</option>
+                                    <option value="30">30 Itens</option>
+                                    <option value="35">35 Itens</option>
+                                    <option value="40">40 Itens</option>
+                                    <option value="45">45 Itens</option>
+                                    <option value="50">50 Itens</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row div-pesquisa">
+                            <div class="form-group col-md-12">
+                                <input type="text" id="tolerancia" name="example_name" value="" />
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-12" id="wrapper">
+                            <div title="Selecione uma ou Várias Origens dos Dados!!!">
+                                <input type="text" id="input-tags" class="input-tags demo-default">
+                            </div>
+                            <input type="text" id="origens" hidden>
+
+                        </div>
+
+                        <div class="row" style="margin-left: 29px;" data-tip="Compara as fotos Selecionadas para Ver a similaridade entre elas!!!">
+                            <input type="checkbox" class="form-check-input" id="chcompara-fotos"
+                                style="height: 15px;width: 15px;">
+                            <label class="form-check-label" for="chcompara-fotos"
+                                style="color: black; font-family: century schoolbook; margin-top: 1px;">
+                                <i>Comparação entre Fotos</i>
+                            </label>
+                        </div>
+
+                    </fieldset>
+                    <br>
+                    <fieldset class="scheduler-border-nav"
+                        style="height:auto !important; margin-right:auto !important; margin-left:auto !important; color:black">
+                        <legend class="scheduler-border-nav">Ações</legend>
+                        <div class="row justify-content-center align-items-center" style="margin-top: 10px;">
+                            <a class="btpesquisar rbarralateral acoes" style="cursor: pointer;" title="Pesquisar"
+                                id="btpesquisar" formato="">
+                                <i class="fa fa-search fa-2x" style="color: black; margin-top: -3px;"></i>
+                            </a>
+                        </div>
+                    </fieldset>
+
+                </div>
+            </ul>
+
+            <div style="color: whitesmoke;"></div>
+
+        </div>
+    </nav>
+
+    <div id="content" class="p-4 p-md-5 pt-5">
+
+        <div class="row justify-content-center align-items-center">
+            <img id="ampulheta"
+                src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+PHN2ZyB4bWxuczpzdmc9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjAiIHdpZHRoPSI2NHB4IiBoZWlnaHQ9IjY0cHgiIHZpZXdCb3g9IjAgMCAxMjggMTI4IiB4bWw6c3BhY2U9InByZXNlcnZlIj48Zz48cGF0aCBkPSJNNzEgMzkuMlYuNGE2My42IDYzLjYgMCAwIDEgMzMuOTYgMTQuNTdMNzcuNjggNDIuMjRhMjUuNTMgMjUuNTMgMCAwIDAtNi43LTMuMDN6IiBmaWxsPSIjMDAwIi8+PHBhdGggZD0iTTcxIDM5LjJWLjRhNjMuNiA2My42IDAgMCAxIDMzLjk2IDE0LjU3TDc3LjY4IDQyLjI0YTI1LjUzIDI1LjUzIDAgMCAwLTYuNy0zLjAzeiIgZmlsbD0iI2UxZTFlMSIgdHJhbnNmb3JtPSJyb3RhdGUoNDUgNjQgNjQpIi8+PHBhdGggZD0iTTcxIDM5LjJWLjRhNjMuNiA2My42IDAgMCAxIDMzLjk2IDE0LjU3TDc3LjY4IDQyLjI0YTI1LjUzIDI1LjUzIDAgMCAwLTYuNy0zLjAzeiIgZmlsbD0iI2UxZTFlMSIgdHJhbnNmb3JtPSJyb3RhdGUoOTAgNjQgNjQpIi8+PHBhdGggZD0iTTcxIDM5LjJWLjRhNjMuNiA2My42IDAgMCAxIDMzLjk2IDE0LjU3TDc3LjY4IDQyLjI0YTI1LjUzIDI1LjUzIDAgMCAwLTYuNy0zLjAzeiIgZmlsbD0iI2UxZTFlMSIgdHJhbnNmb3JtPSJyb3RhdGUoMTM1IDY0IDY0KSIvPjxwYXRoIGQ9Ik03MSAzOS4yVi40YTYzLjYgNjMuNiAwIDAgMSAzMy45NiAxNC41N0w3Ny42OCA0Mi4yNGEyNS41MyAyNS41MyAwIDAgMC02LjctMy4wM3oiIGZpbGw9IiNiZWJlYmUiIHRyYW5zZm9ybT0icm90YXRlKDE4MCA2NCA2NCkiLz48cGF0aCBkPSJNNzEgMzkuMlYuNGE2My42IDYzLjYgMCAwIDEgMzMuOTYgMTQuNTdMNzcuNjggNDIuMjRhMjUuNTMgMjUuNTMgMCAwIDAtNi43LTMuMDN6IiBmaWxsPSIjOTc5Nzk3IiB0cmFuc2Zvcm09InJvdGF0ZSgyMjUgNjQgNjQpIi8+PHBhdGggZD0iTTcxIDM5LjJWLjRhNjMuNiA2My42IDAgMCAxIDMzLjk2IDE0LjU3TDc3LjY4IDQyLjI0YTI1LjUzIDI1LjUzIDAgMCAwLTYuNy0zLjAzeiIgZmlsbD0iIzZlNmU2ZSIgdHJhbnNmb3JtPSJyb3RhdGUoMjcwIDY0IDY0KSIvPjxwYXRoIGQ9Ik03MSAzOS4yVi40YTYzLjYgNjMuNiAwIDAgMSAzMy45NiAxNC41N0w3Ny42OCA0Mi4yNGEyNS41MyAyNS41MyAwIDAgMC02LjctMy4wM3oiIGZpbGw9IiMzYzNjM2MiIHRyYW5zZm9ybT0icm90YXRlKDMxNSA2NCA2NCkiLz48YW5pbWF0ZVRyYW5zZm9ybSBhdHRyaWJ1dGVOYW1lPSJ0cmFuc2Zvcm0iIHR5cGU9InJvdGF0ZSIgdmFsdWVzPSIwIDY0IDY0OzQ1IDY0IDY0OzkwIDY0IDY0OzEzNSA2NCA2NDsxODAgNjQgNjQ7MjI1IDY0IDY0OzI3MCA2NCA2NDszMTUgNjQgNjQiIGNhbGNNb2RlPSJkaXNjcmV0ZSIgZHVyPSI3MjBtcyIgcmVwZWF0Q291bnQ9ImluZGVmaW5pdGUiPjwvYW5pbWF0ZVRyYW5zZm9ybT48L2c+PGc+PGNpcmNsZSBmaWxsPSIjMDAwIiBjeD0iNjMuNjYiIGN5PSI2My4xNiIgcj0iMTIiLz48YW5pbWF0ZSBhdHRyaWJ1dGVOYW1lPSJvcGFjaXR5IiBkdXI9IjcyMG1zIiBiZWdpbj0iMHMiIHJlcGVhdENvdW50PSJpbmRlZmluaXRlIiBrZXlUaW1lcz0iMDswLjU7MSIgdmFsdWVzPSIxOzA7MSIvPjwvZz48L3N2Zz4="
+                style="display: none;">
+        </div>
+
+        <div id="itenspesquisa" class="form-row justify-content-center align-items-center">
+
+        </div>
+
+
+        <br>
+        <!-- DIV COM O RECAPTCHA INVISIVEL-->
+        <div id='recaptcha' data-size="invisible"></div>
+
+
+
+
+    </div>
+</div>

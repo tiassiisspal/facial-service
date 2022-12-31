@@ -1,0 +1,24 @@
+# gitlab
+# ti.assii.sspal@gmail.Com
+
+# tk-gl-lucerna.txt
+Token de acesso pessoal: glpat-pSNY8bd5Cohb4-zp1NKP
+Token de feed:
+Token de e-mail recebido:
+
+#aw-m15r7-carlos@tiassiisspal
+Token de acesso pessoal: glpat-1Ps36FEuYnPXudsyyVhn
+Token de feed: yX6_SbL5RuUuJsSxuJ1s
+Token de e-mail recebido: 53r12b0bchkecx6dgy1qqhhcy
+
+# DOCKER HUB
+# docker - tiassiisspalen - token
+docker login -u tiassiisspal
+Tohen: dckr_pat_XvrMXpiMJhrJnThJhLkalmjtsUs
+
+# docker - carlosrobertodevops - token
+docker login -u carlosrobertodevops
+Token: dckr_pat_q_udIPIzw_eg26kUjknpDy-0_jc
+
+# GITLAB DOCKER IMAGE
+
